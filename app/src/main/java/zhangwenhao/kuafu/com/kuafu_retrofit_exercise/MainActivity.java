@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        testFuncation(0);//RxJava基础概念的练习
+        testFuncation(1);//RxJava基础概念的练习
     }
 
     private void testFuncation(int i) {
@@ -27,13 +27,16 @@ public class MainActivity extends AppCompatActivity {
             case 0:
                 method0();
                 break;
+            case 1:
+                method1();
+                break;
         }
-
 
     }
 
+
     /**
-     *
+     * observable 的 create
      */
     private void method0() {
         //创建observable
@@ -69,5 +72,31 @@ public class MainActivity extends AppCompatActivity {
         //订阅
         observable.subscribe(observer);
 
+    }
+
+    /**
+     * just
+     */
+    private void method1() {
+        Observable<String> observable = Observable.just("hello", "RxJAVA", "!");
+
+        Observer<String> observer = new Observer<String>() {
+            @Override
+            public void onCompleted() {
+                Log.d(TAG, "onCompleted: ");
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.d(TAG, "onError: ");
+            }
+
+            @Override
+            public void onNext(String s) {
+                Log.d(TAG, "onNext: " + s);
+            }
+        };
+
+        observable.subscribe(observer);
     }
 }
