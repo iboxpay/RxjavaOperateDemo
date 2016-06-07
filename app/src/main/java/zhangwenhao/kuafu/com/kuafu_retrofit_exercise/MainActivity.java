@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
+import java.util.ArrayList;
+
 import rx.Observable;
 import rx.Observer;
 import rx.Subscriber;
@@ -16,6 +18,9 @@ import rx.functions.Action0;
 import rx.functions.Action1;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
+import zhangwenhao.kuafu.com.kuafu_retrofit_exercise.factory.DataFactory;
+import zhangwenhao.kuafu.com.kuafu_retrofit_exercise.model.Course;
+import zhangwenhao.kuafu.com.kuafu_retrofit_exercise.model.Student;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mProgressBar = (ProgressBar) findViewById(R.id.progressbar);
         mImageViewm = (ImageView) findViewById(R.id.image);
-        testFuncation(4);//RxJava基础概念的练习
+        testFuncation(7);//RxJava基础概念的练习
     }
 
     private void testFuncation(int i) {
@@ -53,6 +58,12 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case 5:
                 method6();
+                break;
+            case 6:
+                method7();
+                break;
+            case 7:
+                method8();
                 break;
 
         }
@@ -261,9 +272,71 @@ public class MainActivity extends AppCompatActivity {
 
 
     /**
-     * flitmap
+     * copy 别人代码 造数据
      */
     private void method6() {
+        ArrayList<Student> students = DataFactory.getData();
+        int size = students.size();
+        for (int i = 0; i < size; i++) {
+            Log.d(TAG, "姓名:" + students.get(i).name);
+            int sizeCourses = students.get(i).courses.size();
+            for (int j = 0; j < sizeCourses; j++) {
+                Log.d(TAG, "课程:" + students.get(i).courses.get(j).name);
+            }
+        }
+    }
 
+    /**
+     * copy 别人代码
+     */
+    private void method7() {
+        //just(T...): 将传入的参数依次发送出来,实现遍历的目的
+        Observable.from(DataFactory.getData())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<Student>() {
+                    @Override
+                    public void call(Student student) {
+                        Log.d(TAG, "观察者:" + student.name);
+                    }
+                });
+    }
+
+
+    /**
+     * flatmap
+     * <p/>
+     * 应用场景 ：一个对象 经过map变换之后 的结果还是一个数组 或者 集合
+     * 为了在对这个数组或者集合遍历 使用flatmap
+     * <p/>
+     * 怎么理解这个玩意呢：
+     * 不看源码的理解：还是可以当做for循环来理解 ：如这里的 没传入一个student对象，就变换一次，
+     * 将student对象变换新的Observable ，再由这个 新observable 传递数据，直到传递完成，再由 老observable继续传递数据
+     * <p/>
+     * 暂时先这样 回头研究下源码  lift（） 具体实现
+     */
+    private void method8() {
+        Observable.from(DataFactory.getData())
+                .flatMap(new Func1<Student, Observable<Course>>() {
+                    @Override
+                    public Observable<Course> call(Student student) {
+                        return Observable.from(student.courses);
+                    }
+                }).subscribe(new Observer<Course>() {
+            @Override
+            public void onCompleted() {
+                Log.d(TAG, "onCompleted: ");
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.d(TAG, "onError: ");
+            }
+
+            @Override
+            public void onNext(Course course) {
+                Log.d(TAG, "onNext: " + course);
+            }
+        });
     }
 }
