@@ -7,6 +7,8 @@ import android.util.Log;
 import rx.Observable;
 import rx.Observer;
 import rx.Subscriber;
+import rx.functions.Action0;
+import rx.functions.Action1;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        testFuncation(2);//RxJava基础概念的练习
+        testFuncation(3);//RxJava基础概念的练习
     }
 
     private void testFuncation(int i) {
@@ -33,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
             case 2:
                 method3();
                 break;
+            case 3:
+                method4();
         }
 
     }
@@ -128,5 +132,41 @@ public class MainActivity extends AppCompatActivity {
         };
 
         observable.subscribe(observer);
+    }
+
+    /**
+     * user Action0 & 1  auto create oberser
+     */
+    private void method4() {
+
+        Observable<String> observable = Observable.just("hello", "rxjava", "auto", "create", "observer");
+
+        //use action0 no parameter
+        Action0 onCompletedAction = new Action0() {
+            @Override
+            public void call() {
+                Log.d(TAG, "call: onCompletedAction");
+            }
+        };
+
+        //user action1 have 1 parameter
+        Action1<String> onNextAction = new Action1<String>() {
+            @Override
+            public void call(String s) {
+                Log.d(TAG, "onNextAction:" + s);
+            }
+        };
+
+        //use action1 have 1 parameter
+        Action1<Throwable> onErrorAction = new Action1<Throwable>() {
+            @Override
+            public void call(Throwable throwable) {
+                Log.d(TAG, "call: onErrorAction" + throwable.toString());
+            }
+        };
+
+        observable.subscribe(onNextAction, onErrorAction, onCompletedAction);
+
+
     }
 }
