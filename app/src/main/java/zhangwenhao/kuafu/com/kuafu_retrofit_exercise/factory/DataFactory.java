@@ -25,10 +25,11 @@
 
 package zhangwenhao.kuafu.com.kuafu_retrofit_exercise.factory;
 
-import com.malin.rengwuxianrxjava.model.Course;
-import com.malin.rengwuxianrxjava.model.Student;
 
 import java.util.ArrayList;
+
+import zhangwenhao.kuafu.com.kuafu_retrofit_exercise.model.Course;
+import zhangwenhao.kuafu.com.kuafu_retrofit_exercise.model.Student;
 
 /**
  * 类描述:获取学生集合
@@ -43,26 +44,27 @@ public class DataFactory {
 
     /**
      * 获取学生集合
-     *
+     * <p>
      * [
-     *      1:{
-     *          id:1
-     *          name:学生1
-     *          course:[学生1的课程1,学生1的课程2,学生1的课程3]
-     *        }
-     *
-     *      2:{
-     *          id:2
-     *          name:学生2
-     *          course:[学生2的课程1,学生2的课程2,学生2的课程3]
-     *        }
-     *
-     *      3:{
-     *          id:3
-     *          name:学生3
-     *          course:[学生3的课程1,学生3的课程2,学生3的课程3]
-     *        }
+     * 1:{
+     * id:1
+     * name:学生1
+     * course:[学生1的课程1,学生1的课程2,学生1的课程3]
+     * }
+     * <p>
+     * 2:{
+     * id:2
+     * name:学生2
+     * course:[学生2的课程1,学生2的课程2,学生2的课程3]
+     * }
+     * <p>
+     * 3:{
+     * id:3
+     * name:学生3
+     * course:[学生3的课程1,学生3的课程2,学生3的课程3]
+     * }
      * ]
+     *
      * @return
      */
     public static ArrayList<Student> getData() {
@@ -78,12 +80,12 @@ public class DataFactory {
 
             student = new Student();
             student.id = i;
-            student.name = new StringBuffer("学生").append((i+1)).toString();
+            student.name = new StringBuffer("学生").append((i + 1)).toString();
 
             for (int j = 0; j < 2; j++) {
                 course = new Course();
                 course.id = j;
-                course.name = new StringBuffer(student.name).append("的课程").append((j+1)).toString();
+                course.name = new StringBuffer(student.name).append("的课程").append((j + 1)).toString();
                 courses.add(course);
             }
 
