@@ -350,9 +350,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     /**
-     * 尝试取消注册
-     * 发现在执行完 completed 就已经unsubscribe了
-     * todo 这个的源码要求看下
+     * 1:尝试取消注册
+     * 2:强行在onNext中unsubscribe
      */
     private void method9() {
         Observable.from(DataFactory.getData())
@@ -366,9 +365,9 @@ public class MainActivity extends AppCompatActivity {
             public void onCompleted() {
                 Log.d(TAG, "onCompleted: ");
                 Log.d(TAG, "unsubscribe " + isUnsubscribed());
-                if (this.isUnsubscribed()) {
+                if (!this.isUnsubscribed()) {
                     unsubscribe();
-                    Log.d(TAG, "unsubscribe ");
+                    Log.d(TAG, "unsubscribe " + isUnsubscribed());
                 }
             }
 
@@ -380,6 +379,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onNext(Course course) {
                 Log.d(TAG, "onNext: " + course);
+                Log.d(TAG, "onNext " + isUnsubscribed());
+               /* if (!this.isUnsubscribed()) {
+                    unsubscribe();
+                    Log.d(TAG, " onNext unsubscribe ");
+                }*/
             }
         });
     }
