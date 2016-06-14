@@ -23,7 +23,6 @@ import rx.schedulers.Schedulers;
 import zhangwenhao.kuafu.com.kuafu_retrofit_exercise.factory.DataFactory;
 import zhangwenhao.kuafu.com.kuafu_retrofit_exercise.model.Course;
 import zhangwenhao.kuafu.com.kuafu_retrofit_exercise.model.Student;
-import zhangwenhao.kuafu.com.kuafu_retrofit_exercise.rxJava.No4Subject;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,8 +40,14 @@ public class MainActivity extends AppCompatActivity {
         mProgressBar = (ProgressBar) findViewById(R.id.progressbar);
         mImageViewm = (ImageView) findViewById(R.id.image);
         //testFuncation(9);//RxJava基础概念的练习
+
         //No3Single.Single1()};
-        No4Subject.Subject1ReplaySubject();
+
+        //No4Subject.Subject1AsyncSubject();
+        //No4Subject.Subject1BehaviorSubject();
+        //No4Subject.Subject1PublishSubject();
+        //No4Subject.Subject1ReplaySubject();
+
     }
 
 
