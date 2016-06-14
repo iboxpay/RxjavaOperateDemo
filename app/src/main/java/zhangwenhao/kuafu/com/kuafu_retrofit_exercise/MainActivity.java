@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import rx.Observable;
 import rx.Observer;
@@ -16,6 +17,7 @@ import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
 import rx.functions.Action1;
+import rx.functions.Func0;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 import zhangwenhao.kuafu.com.kuafu_retrofit_exercise.factory.DataFactory;
@@ -37,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mProgressBar = (ProgressBar) findViewById(R.id.progressbar);
         mImageViewm = (ImageView) findViewById(R.id.image);
-        testFuncation(8);//RxJava基础概念的练习
+        testFuncation(9);//RxJava基础概念的练习
     }
 
     private void testFuncation(int i) {
@@ -69,6 +71,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case 8:
                 method9();
+                break;
+            case 9:
+                method10();
                 break;
 
         }
@@ -321,6 +326,8 @@ public class MainActivity extends AppCompatActivity {
      * 不看源码的理解：还是可以当做for循环来理解 ：如这里的 没传入一个student对象，就变换一次，
      * 将student对象变换新的Observable ，再由这个 新observable 传递数据，直到传递完成，再由 老observable继续传递数据
      * <p/>
+     * FlatMap对这些Observables发射的数据做的是合并(merge)操作，因此它们可能是交错的。
+     * 注意：如果任何一个通过这个flatMap操作产生的单独的Observable调用onError异常终止了，这个Observable自身会立即调用onError并终止。
      * 暂时先这样 回头研究下源码  lift（） 具体实现
      */
     private void method8() {
@@ -387,4 +394,82 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    //====================================变幻===========================================//
+
+    /**
+     * buffer
+     * 测试 buffer ( count , skip)
+     * buffer(count, skip)从原始Observable的第一项数据开始创建新的缓存，此后每当收到skip项数据，
+     * 用count项数据填充缓存：开头的一项和后续的count-1项，它以列表(List)的形式发射缓存，
+     * 取决于count和skip的值，这些缓存可能会有重叠部分（比如skip
+     * < count时），也可能会有间隙（比如skip > count时）
+     * 1:count>skip
+     * .buffer(5, 3)分别打印onNext: [1, 2, 3, 4, 5][4, 5, 6, 7, 8][7, 8, 9, 10]
+     * 2:count<skip
+     * buffer(2,3) 分别打印onNext: [1, 2] [4, 5] [7, 8] [10]
+     * 3:count=skip
+     * buffer(3,3) 分别打印onNext: [1, 2, 3] [4, 5, 6] [7, 8, 9][10]
+     */
+    private void method10() {
+
+        Observable<Integer> observable = Observable.just(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+
+        Observable<List<Integer>> observable1 = observable.buffer(5, 3);
+
+        observable1.subscribe(new Observer<List<Integer>>() {
+            @Override
+            public void onCompleted() {
+                Log.d(TAG, "onCompleted: ");
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.d(TAG, "onError: " + e);
+            }
+
+            @Override
+            public void onNext(List<Integer> integers) {
+                Log.d(TAG, "onNext: " + integers);
+            }
+        });
+
+   /*     observable1.buffer(2,2).subscribe(new Observer<List<List<Integer>>>() {
+            @Override
+            public void onCompleted() {
+                Log.d(TAG, "onCompleted: ");
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.d(TAG, "onError: " + e);
+            }
+
+            @Override
+            public void onNext(List<List<Integer>> lists) {
+                Log.d(TAG, "onNext: " + lists);
+            }
+        });
+*/
+
+    }
+
+    /**
+     * 这个暂时跳过
+     */
+    private void method11() {
+        Integer[] arrary = new Integer[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        Observable<Integer> observable = Observable.from(arrary);
+
+        observable.buffer(new Func0<Observable<Integer>>() {
+            @Override
+            public Observable<Integer> call() {
+                Log.d(TAG, "call: ");
+                return null;
+            }
+        });
+
+    }
+
+
 }
