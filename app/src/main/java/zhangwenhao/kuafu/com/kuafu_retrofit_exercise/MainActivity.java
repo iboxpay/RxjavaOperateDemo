@@ -61,7 +61,8 @@ public class MainActivity extends AppCompatActivity {
         //No6Operator1.No6Operator1FromFuture();
         //No6Operator1.No6Operator1From1();
         //No6Operator1.No6Operator1Interval();
-        No6Operator1.No6Operator1Range();
+        //No6Operator1.No6Operator1Range();
+        No6Operator1.No6Operator1Repeat();
     }
 
 

@@ -404,6 +404,21 @@ public class No6Operator1 {
         });
     }
 
+    /**
+     * 6.1.8 repeat()
+     *
+     * 创建一个发射特定数据重复多次的Observable
+     */
+    public static void No6Operator1Repeat() {
+
+        Observable.just(1, 2).repeat(3, Schedulers.newThread()).subscribe(new Action1<Integer>() {
+            @Override
+            public void call(Integer integer) {
+                Log.d("No6Operator1Repeat",
+                        "onNext" + Thread.currentThread().getName() + "_____" + integer);
+            }
+        });
+    }
 
 
 }
