@@ -469,6 +469,9 @@ public class No6Operator1 {
      * 和asyncFunc()
      *
      * TODO 由一个普通的func 变为一个 有observable的func
+     *
+     *
+     * 这里跳过了好几个方法  直接理解下  我这里暂时不贴  怕误导
      */
     public static void No6Operator1toAsync() {
         Func1<Integer, Observable<Integer>> func1 = Async
@@ -485,7 +488,23 @@ public class No6Operator1 {
                         "onNext" + Thread.currentThread().getName() + "_____" + integer);
             }
         });
+        //06-15 17:45:06.820 19656-19656/? D/No6Operator1toAsync: onNextmain_____0
+    }
 
+    /**
+     * 6.1.10 timer()
+     * timer返回一个Observable，它在延迟一段给定的时间后发射一个简单的数字0。
+     */
+    public static void No6Operator1Timer() {
+        Observable<Long> observable = Observable
+                .timer(1000, TimeUnit.MILLISECONDS, Schedulers.newThread());
+        observable.subscribe(new Action1<Long>() {
+            @Override
+            public void call(Long aLong) {
+                Log.d("No6Operator1Timer",
+                        "onNext" + Thread.currentThread().getName() + "_____" + aLong);
+            }
+        });
     }
 
 
