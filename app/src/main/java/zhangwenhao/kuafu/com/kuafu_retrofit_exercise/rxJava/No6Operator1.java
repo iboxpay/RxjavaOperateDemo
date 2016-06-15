@@ -98,4 +98,84 @@ public class No6Operator1 {
         observable.subscribe(observer);
     }
 
+
+    /**
+     * empty() 创建一个不能发射任何数据但是能正常终止的Observable
+     *
+     * todo  冷暖判断      冷
+     */
+    public static void No6Operator1Empty() {
+        Observable<Object> empty = Observable.empty();
+        Observer<Object> observer = new Observer<Object>() {
+            @Override
+            public void onCompleted() {
+                Log.d("No6Operator1", "onCompleted");
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(Object o) {
+
+            }
+        };
+        empty.subscribe(observer);
+
+    }
+
+    /**
+     * never() 创建一个不发射数据也不终止的Observable
+     */
+    public static void No6Operator1Never() {
+        Observable<Object> observable = Observable.never();
+        Observer<Object> observer = new Observer<Object>() {
+            @Override
+            public void onCompleted() {
+                Log.d("No6Operator1", "onCompleted");
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.d("No6Operator1", "onError");
+            }
+
+            @Override
+            public void onNext(Object o) {
+                Log.d("No6Operator1", "onNext");
+            }
+        };
+
+        observable.subscribe(observer);
+    }
+
+    /**
+     * error() 创建一个不发射数据以一个错误终止的Observable
+     *
+     * todo 冷热判断   冷
+     */
+    public static void No6Operator1Throw() {
+        Observable<Object> observable = Observable.error(new Throwable());
+        Observer<Object> observer = new Observer<Object>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.d("No6Operator1", "onError" + e.toString());
+            }
+
+            @Override
+            public void onNext(Object o) {
+
+            }
+        };
+
+        observable.subscribe(observer);
+    }
+
 }
