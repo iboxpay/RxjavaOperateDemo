@@ -2,6 +2,8 @@ package zhangwenhao.kuafu.com.kuafu_retrofit_exercise.rxJava;
 
 import android.util.Log;
 
+import java.util.concurrent.TimeUnit;
+
 import rx.Scheduler;
 import rx.functions.Action0;
 import rx.schedulers.Schedulers;
@@ -49,6 +51,19 @@ public class No5Schedulers {
 
         // 一段时间后在执行这个
         //worker.unsubscribe();
+    }
+
+    /**
+     *
+     */
+    public static void Scheduler2() {
+        Schedulers.newThread().createWorker().schedulePeriodically(new Action0() {
+            @Override
+            public void call() {
+                Log.d("No5Schedulers",
+                        Thread.currentThread().getName() + System.currentTimeMillis());
+            }
+        }, 500, 5000, TimeUnit.MILLISECONDS);
     }
 
 }

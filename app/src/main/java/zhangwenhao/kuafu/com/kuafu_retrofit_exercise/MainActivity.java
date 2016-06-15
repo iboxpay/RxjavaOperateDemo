@@ -49,7 +49,8 @@ public class MainActivity extends AppCompatActivity {
         //No4Subject.Subject1PublishSubject();
         //No4Subject.Subject1ReplaySubject();
 
-        No5Schedulers.Schedulers1();
+        //No5Schedulers.Scheduler1();
+        No5Schedulers.Scheduler2();
     }
 
 
