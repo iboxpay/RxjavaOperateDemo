@@ -20,7 +20,7 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.1.1'
     //rxjava最基本的依赖
@@ -32,5 +32,11 @@ dependencies {
     //为了添加androidschedulers
     compile 'io.reactivex:rxandroid:1.1.0'
     //日志管理
-//    compile 'com.github.orhanobut:logger:1.12'
+    //    compile 'com.github.orhanobut:logger:1.12'
+    //添加rxjava-computation-expressions 为了ifthen 和 switchcase 和whiledowhile操作
+    compile 'io.reactivex:rxjava-computation-expressions:0.21.0'
+    //添加 rxjava-joins 模块 为了集合操作
+    compile 'io.reactivex:rxjava-joins:0.22.0'
+    //添加 RxjavaAsyncUtil扩展包
+    compile 'io.reactivex:rxjava-async-util:0.21.0'
 }
