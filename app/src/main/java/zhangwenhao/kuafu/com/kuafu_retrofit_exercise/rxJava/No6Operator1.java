@@ -14,7 +14,9 @@ import rx.Observer;
 import rx.Statement;
 import rx.Subscriber;
 import rx.functions.Action0;
+import rx.functions.Action1;
 import rx.functions.Func0;
+import rx.schedulers.Schedulers;
 import rx.util.async.Async;
 
 /**
@@ -334,7 +336,7 @@ public class No6Operator1 {
     }
 
     /**
-     * RxjavaAsyncUtil 扩展包里面的提供的
+     * RxjavaAsyncUtil 扩展包里面的提供的   后面 start部分还会有
      *
      * Async.xxxxx
      * fromAction
@@ -370,6 +372,38 @@ public class No6Operator1 {
         observable.subscribe(observer);
 
     }
+
+    /**
+     * 创建一个按固定时间间隔发射整数序列的Observable
+     */
+    public static void No6Operator1Interval() {
+        Observable.interval(1000, TimeUnit.MILLISECONDS, Schedulers.newThread())
+                .subscribe(new Action1<Long>() {
+                    @Override
+                    public void call(Long aLong) {
+
+                        Log.d("No6Operator1", "onNext" + Thread.currentThread() + "_____" + aLong);
+                    }
+                });
+    }
+
+    /**
+     * 6.1.6just  就直接跳过了
+     */
+
+    /**
+     * 6.1.7Range()
+     */
+    public static void No6Operator1Range() {
+        Observable.range(0, 9, Schedulers.newThread()).subscribe(new Action1<Integer>() {
+            @Override
+            public void call(Integer integer) {
+                Log.d("No6Operator1",
+                        "onNext" + Thread.currentThread().getName() + "_____" + integer);
+            }
+        });
+    }
+
 
 
 }
