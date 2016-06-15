@@ -57,7 +57,8 @@ public class MainActivity extends AppCompatActivity {
         //No6Operator1.No6Operator1Never();
         //No6Operator1.No6Operator1Throw();
         //No6Operator1.No6Operator1From();
-        No6Operator1.No6Operator1FromFuture();
+        //No6Operator1.No6Operator1FromFuture();
+        No6Operator1.No6Operator1From1();
     }
 
 

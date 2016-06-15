@@ -10,7 +10,9 @@ import java.util.concurrent.TimeoutException;
 import rx.Observable;
 import rx.Observer;
 import rx.Subscriber;
+import rx.functions.Action0;
 import rx.functions.Func0;
+import rx.util.async.Async;
 
 /**
  * Created by zhangwenhao on 2016/6/15.
@@ -267,8 +269,42 @@ public class No6Operator1 {
         //06-15 14:27:26.503 13188-13188/zhangwenhao.kuafu.com.kuafu_retrofit_exercise D/No6Operator1: onCompleted
     }
 
-    public static void No6Operator1From1(){
-        //Rxjava
+    /**
+     * RxjavaAsyncUtil 扩展包里面的提供的
+     *
+     * Async.xxxxx
+     * fromAction
+     * fromCallable
+     * fromFunc0
+     * fromRunnable
+     */
+    public static void No6Operator1From1() {
+        Observable<Integer> observable = Async.fromAction(new Action0() {
+            @Override
+            public void call() {
+
+            }
+        }, 1);
+
+        Observer<Integer> observer = new Observer<Integer>() {
+            @Override
+            public void onCompleted() {
+                Log.d("No6Operator1", "onCompleted");
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(Integer integer) {
+                Log.d("No6Operator1", "onNext" + integer);
+            }
+        };
+
+        observable.subscribe(observer);
+
     }
 
 
