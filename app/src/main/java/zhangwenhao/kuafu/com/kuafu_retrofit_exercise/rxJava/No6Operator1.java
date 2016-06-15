@@ -2,6 +2,8 @@ package zhangwenhao.kuafu.com.kuafu_retrofit_exercise.rxJava;
 
 import android.util.Log;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
@@ -9,6 +11,7 @@ import java.util.concurrent.TimeoutException;
 
 import rx.Observable;
 import rx.Observer;
+import rx.Statement;
 import rx.Subscriber;
 import rx.functions.Action0;
 import rx.functions.Func0;
@@ -105,6 +108,67 @@ public class No6Operator1 {
         observable.subscribe(observer);
     }
 
+
+    /**
+     * 'io.reactivex:rxjava-computation-expressions:0.21.0'
+     *
+     * Statement.xxxxx
+     * switchCase()
+     * ifThen()
+     * doWhile();第一个参数是要发射的数据源   第二个参数是 dowhile的判断
+     * whileDo();
+     *
+     * todo defer ()  冷
+     */
+    public static void No6Operator1SwitchCase() {
+        Observable<Integer> observable = Observable.just(1, 2, 3, 4, 5, 6);
+        //dowhile();   说白了就是  dowhile
+      /*  Observable<Integer> observable1 = Statement.doWhile(observable, new Func0<Boolean>() {
+            @Override
+            public Boolean call() {
+                return true;//判断的条件
+            }
+        });*/
+
+        //swihchcase();    说白了就是  switch
+        Map<Integer, Observable<Integer>> map = new HashMap();
+        map.put(1, Observable.just(1, 2, 3, 4, 5));
+        map.put(2, Observable.just(6, 7, 8, 9, 10));
+
+        Observable<Integer> observable1 = Statement.switchCase(new Func0<Integer>() {
+            @Override
+            public Integer call() {
+                return 1;
+            }
+        }, map);
+
+        //ifThen()    说白了 就是if() else()
+       /* Statement.ifThen(new Func0<Boolean>() {
+            @Override
+            public Boolean call() {
+                return null;
+            }
+        },Observable.just(1,2,3,4,5));*/
+        Observer<Integer> observer = new Observer<Integer>() {
+            @Override
+            public void onCompleted() {
+                Log.d("No6Operator1", "onCompleted");
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(Integer integer) {
+                Log.d("No6Operator1", "onNext_____" + integer);
+            }
+        };
+
+        observable1.subscribe(observer);
+
+    }
 
     /**
      * empty() 创建一个不能发射任何数据但是能正常终止的Observable

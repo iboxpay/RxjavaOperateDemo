@@ -53,12 +53,13 @@ public class MainActivity extends AppCompatActivity {
         //No5Schedulers.Scheduler2();
 
         //No6Operator1.No6Operator1Defer();
+        No6Operator1.No6Operator1SwitchCase();
         //No6Operator1.No6Operator1Empty();
         //No6Operator1.No6Operator1Never();
         //No6Operator1.No6Operator1Throw();
         //No6Operator1.No6Operator1From();
         //No6Operator1.No6Operator1FromFuture();
-        No6Operator1.No6Operator1From1();
+        //No6Operator1.No6Operator1From1();
     }
 
 
