@@ -505,6 +505,7 @@ public class No6Operator1 {
                         "onNext" + Thread.currentThread().getName() + "_____" + aLong);
             }
         });
+        //06-15 17:49:40.323 24447-24466/zhangwenhao.kuafu.com.kuafu_retrofit_exercise D/No6Operator1Timer: onNextRxNewThreadScheduler-1_____0
     }
 
 
