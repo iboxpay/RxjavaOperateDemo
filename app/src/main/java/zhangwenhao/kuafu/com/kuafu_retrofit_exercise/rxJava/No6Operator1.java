@@ -16,6 +16,7 @@ import rx.Subscriber;
 import rx.functions.Action0;
 import rx.functions.Action1;
 import rx.functions.Func0;
+import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 import rx.util.async.Async;
 
@@ -418,6 +419,73 @@ public class No6Operator1 {
                         "onNext" + Thread.currentThread().getName() + "_____" + integer);
             }
         });
+    }
+
+    /**
+     * 6.1.9  start()
+     * 返回一个Observable，它发射一个类似于函数声明的值
+     *
+     * 这个函数只会被执行一次 每个observer只有一次
+     *
+     * todo 这里的这个schedule 是设置 func的
+     */
+    public static void No6Operator1Start() {
+        Observable<Integer> observable = Async.start(new Func0<Integer>() {
+            @Override
+            public Integer call() {
+                Log.d("No6Operator1Start__1",
+                        "onNext" + Thread.currentThread().getName() + "_____");
+                int i = (int) (Math.random() * 10);
+                return new Integer(i);
+            }
+        }, Schedulers.newThread());
+        observable.subscribe(new Action1<Integer>() {
+            @Override
+            public void call(Integer integer) {
+                Log.d("No6Operator1Start__1",
+                        "onNext" + Thread.currentThread().getName() + "_____" + integer);//
+            }
+        });
+        observable.subscribe(new Action1<Integer>() {
+            @Override
+            public void call(Integer integer) {
+                Log.d("No6Operator1Start__2",
+                        "onNext" + Thread.currentThread().getName() + "_____" + integer);
+            }
+        });
+
+        //06-15 16:35:54.018 11737-11767/zhangwenhao.kuafu.com.kuafu_retrofit_exercise D/No6Operator1Start__1: onNextRxNewThreadScheduler-1_____
+        //06-15 16:35:54.018 11737-11737/zhangwenhao.kuafu.com.kuafu_retrofit_exercise D/No6Operator1Start__1: onNextmain_____2
+        //06-15 16:35:54.019 11737-11737/zhangwenhao.kuafu.com.kuafu_retrofit_exercise D/No6Operator1Start__2: onNextmain_____2
+    }
+
+    /**
+     * 6.1.9  toAsync()
+     * 对于函数(functions)，这个操作符调用这个函数获取一个值，然后返回一个会发射这个值给后续观察者的Observable（和start一样）。
+     * 对于动作(Action)，过程类似，但是没有返回值，在这种情况下，这个操作符在终止前会发射一个null值。
+     *
+     * toAsync()
+     * asyncAction()
+     * 和asyncFunc()
+     *
+     * TODO 由一个普通的func 变为一个 有observable的func
+     */
+    public static void No6Operator1toAsync() {
+        Func1<Integer, Observable<Integer>> func1 = Async
+                .toAsync(new Func1<Integer, Integer>() {
+                    @Override
+                    public Integer call(Integer s) {
+                        return 0;
+                    }
+                });
+        func1.call(1).subscribe(new Action1<Integer>() {
+            @Override
+            public void call(Integer integer) {
+                Log.d("No6Operator1toAsync",
+                        "onNext" + Thread.currentThread().getName() + "_____" + integer);
+            }
+        });
+
     }
 
 
