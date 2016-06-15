@@ -23,7 +23,7 @@ import rx.schedulers.Schedulers;
 import zhangwenhao.kuafu.com.kuafu_retrofit_exercise.factory.DataFactory;
 import zhangwenhao.kuafu.com.kuafu_retrofit_exercise.model.Course;
 import zhangwenhao.kuafu.com.kuafu_retrofit_exercise.model.Student;
-import zhangwenhao.kuafu.com.kuafu_retrofit_exercise.rxJava.No5Schedulers;
+import zhangwenhao.kuafu.com.kuafu_retrofit_exercise.rxJava.No6Operator1;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -50,7 +50,8 @@ public class MainActivity extends AppCompatActivity {
         //No4Subject.Subject1ReplaySubject();
 
         //No5Schedulers.Scheduler1();
-        No5Schedulers.Scheduler2();
+        //No5Schedulers.Scheduler2();
+        No6Operator1.No6Operator1Defer();
     }
 
 
