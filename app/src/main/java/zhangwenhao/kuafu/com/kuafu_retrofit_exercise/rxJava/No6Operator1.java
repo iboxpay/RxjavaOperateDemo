@@ -2,6 +2,11 @@ package zhangwenhao.kuafu.com.kuafu_retrofit_exercise.rxJava;
 
 import android.util.Log;
 
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
+
 import rx.Observable;
 import rx.Observer;
 import rx.Subscriber;
@@ -177,5 +182,94 @@ public class No6Operator1 {
 
         observable.subscribe(observer);
     }
+
+    /**
+     * form() 的使用
+     *
+     * // TODO:  冷暖判断   冷
+     */
+    public static void No6Operator1From() {
+        Integer[] integers = new Integer[]{1, 2, 3, 4, 5, 6};
+        Observable<Integer> observable = Observable.from(integers);
+        Observer<Integer> observer = new Observer<Integer>() {
+            @Override
+            public void onCompleted() {
+                Log.d("No6Operator1", "onCompleted");
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(Integer integer) {
+                Log.d("No6Operator1", "onNext" + integer);
+            }
+        };
+
+        observable.subscribe(observer);
+    }
+
+    /**
+     * form(future) 对于Future，它会发射Future.get()方法返回的单个数据
+     * 还有一个延时的版本
+     * TODO:  冷暖判断   冷
+     */
+    public static void No6Operator1FromFuture() {
+        Observable<Integer> observable = Observable.from(new Future<Integer>() {
+            @Override
+            public boolean cancel(boolean mayInterruptIfRunning) {
+                return false;
+            }
+
+            @Override
+            public boolean isCancelled() {
+                return false;
+            }
+
+            @Override
+            public boolean isDone() {
+                return false;
+            }
+
+            @Override
+            public Integer get() throws InterruptedException, ExecutionException {
+                return 1;
+            }
+
+            @Override
+            public Integer get(long timeout, TimeUnit unit)
+                    throws InterruptedException, ExecutionException, TimeoutException {
+                return 1;
+            }
+        });
+
+        Observer<Integer> observer = new Observer<Integer>() {
+            @Override
+            public void onCompleted() {
+                Log.d("No6Operator1", "onCompleted");
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(Integer integer) {
+                Log.d("No6Operator1", "onNext" + integer);
+            }
+        };
+
+        observable.subscribe(observer);
+        //06-15 14:27:26.503 13188-13188/zhangwenhao.kuafu.com.kuafu_retrofit_exercise D/No6Operator1: onNext1
+        //06-15 14:27:26.503 13188-13188/zhangwenhao.kuafu.com.kuafu_retrofit_exercise D/No6Operator1: onCompleted
+    }
+
+    public static void No6Operator1From1(){
+        //Rxjava
+    }
+
 
 }
