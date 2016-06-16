@@ -42,6 +42,9 @@ public class No6Operator22FlatMap {
         return list;
     }
 
+    /**
+     * FlatMap对这些Observables发射的数据做的是合并(merge)操作，因此它们可能是交错的。
+     */
     public static void flatMap() {
         Observable.from(getList()).flatMap(new Func1<List<Integer>, Observable<Integer>>() {
             @Override
@@ -108,5 +111,24 @@ public class No6Operator22FlatMap {
      */
     public static void flatMapIterable() {
 
+    }
+
+    /**
+     * concatMap
+     * 但是它按次序连接而不是合并那些生成的Observables
+     */
+    public static void concatMap() {
+        Observable.from(getList()).concatMap(new Func1<List<Integer>, Observable<Integer>>() {
+            @Override
+            public Observable<Integer> call(List<Integer> integers) {
+                Log.d("No_func1__integer", integers.toString());
+                return Observable.from(integers);
+            }
+        }).subscribe(new Action1<Integer>() {
+            @Override
+            public void call(Integer integer) {
+                Log.d("No_func2__integer", integer + "");
+            }
+        });
     }
 }

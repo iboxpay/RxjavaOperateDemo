@@ -74,7 +74,8 @@ public class MainActivity extends AppCompatActivity {
         //No6Operator21Buffer.No6Operator21Buffer5();
         //No6Operator22FlatMap.flatMap();
         //No6Operator22FlatMap.flatMap2();
-        No6Operator22FlatMap.flatMap3();
+        //No6Operator22FlatMap.flatMap3();
+        No6Operator22FlatMap.concatMap();
     }
 
 
