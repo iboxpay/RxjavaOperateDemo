@@ -23,7 +23,7 @@ import rx.schedulers.Schedulers;
 import zhangwenhao.kuafu.com.kuafu_retrofit_exercise.factory.DataFactory;
 import zhangwenhao.kuafu.com.kuafu_retrofit_exercise.model.Course;
 import zhangwenhao.kuafu.com.kuafu_retrofit_exercise.model.Student;
-import zhangwenhao.kuafu.com.kuafu_retrofit_exercise.rxJava.No6Operator21Buffer;
+import zhangwenhao.kuafu.com.kuafu_retrofit_exercise.rxJava.No6Operator22FlatMap;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -71,8 +71,12 @@ public class MainActivity extends AppCompatActivity {
         //No6Operator21.No6Operator21Buffer2();
         //No6Operator21.No6Operator21Buffer3();
         //No6Operator21.No6Operator21Buffer4();
-        No6Operator21Buffer.No6Operator21Buffer5();
+        //No6Operator21Buffer.No6Operator21Buffer5();
+        //No6Operator22FlatMap.flatMap();
+        //No6Operator22FlatMap.flatMap2();
+        No6Operator22FlatMap.flatMap3();
     }
+
 
 
     private void testFuncation(int i) {
