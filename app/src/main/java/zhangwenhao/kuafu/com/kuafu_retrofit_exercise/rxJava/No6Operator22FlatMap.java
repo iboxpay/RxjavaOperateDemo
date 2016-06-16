@@ -131,4 +131,24 @@ public class No6Operator22FlatMap {
             }
         });
     }
+
+    /**
+     * 它和flatMap很像，除了一点：当原始Observable发射一个新的数据（Observable）时，
+     * 它将取消订阅并停止监视产生执之前那个数据的Observable，只监视当前这一个。
+     */
+    public static void switchMap() {
+        Observable.from(getList()).switchMap(new Func1<List<Integer>, Observable<Integer>>() {
+            @Override
+            public Observable<Integer> call(List<Integer> integers) {
+                return null;
+            }
+        });
+    }
+
+    /**
+     * StringObservable类 中还有很多的方法  byte <------>string <------>stream 直接转换
+     * 在特殊的StringObservable类（默认没有包含在RxJava中）中还有一个split操作符。
+     * 它将一个发射字符串的Observable转换为另一个发射字符串的Observable，只不过，
+     * 后者将原始的数据序列当做一个数据流，使用一个正则表达式边界分割它们，然后合并发射分割的结果
+     */
 }
