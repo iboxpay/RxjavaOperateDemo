@@ -116,6 +116,7 @@ public class No6Operator22FlatMap {
     /**
      * concatMap
      * 但是它按次序连接而不是合并那些生成的Observables
+     * todo 不合并
      */
     public static void concatMap() {
         Observable.from(getList()).concatMap(new Func1<List<Integer>, Observable<Integer>>() {
