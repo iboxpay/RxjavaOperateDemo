@@ -23,7 +23,7 @@ import rx.schedulers.Schedulers;
 import zhangwenhao.kuafu.com.kuafu_retrofit_exercise.factory.DataFactory;
 import zhangwenhao.kuafu.com.kuafu_retrofit_exercise.model.Course;
 import zhangwenhao.kuafu.com.kuafu_retrofit_exercise.model.Student;
-import zhangwenhao.kuafu.com.kuafu_retrofit_exercise.rxJava.No6Operator24Map;
+import zhangwenhao.kuafu.com.kuafu_retrofit_exercise.rxJava.No6Operator25Scan;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -81,7 +81,9 @@ public class MainActivity extends AppCompatActivity {
         //No6Operator24Map.map();
         //No6Operator24Map.cast();
         //No6Operator24Map.encode();
-        No6Operator24Map.byLine();
+        //No6Operator24Map.byLine();
+        //No6Operator25Scan.scan();
+        No6Operator25Scan.scan1();
     }
 
 
