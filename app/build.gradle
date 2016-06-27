@@ -37,8 +37,10 @@ dependencies {
     compile 'io.reactivex:rxjava-computation-expressions:0.21.0'
     //添加 rxjava-joins 模块 为了集合操作
     compile 'io.reactivex:rxjava-joins:0.22.0'
-    //添加 RxjavaAsyncUtil扩展包
+    //添加 RxjavaAsyncUtil扩展 包
     compile 'io.reactivex:rxjava-async-util:0.21.0'
     //为了StringObservable这个类
     compile 'io.reactivex:rxjava-string:1.1.0'
+    //为了添加  and/then/when 操作符
+    compile 'io.reactivex:rxjava-joins:0.22.0'
 }
