@@ -6,7 +6,7 @@ package zhangwenhao.kuafu.com.kuafu_retrofit_exercise.rxJava;
  * email:zhangwenhao@iboxpay.com
  * QQ:1160113614
  */
-public class No6Operator35IgnoreElement {
+public class No6Operator36IgnoreElement {
 
     /**
      * IgnoreElements操作符抑制原始Observable发射的所有数据，只允许它的终止通知（onError或onCompleted）通过。
