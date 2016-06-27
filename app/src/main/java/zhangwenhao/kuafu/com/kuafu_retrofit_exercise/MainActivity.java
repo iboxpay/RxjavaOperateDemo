@@ -23,7 +23,7 @@ import rx.schedulers.Schedulers;
 import zhangwenhao.kuafu.com.kuafu_retrofit_exercise.factory.DataFactory;
 import zhangwenhao.kuafu.com.kuafu_retrofit_exercise.model.Course;
 import zhangwenhao.kuafu.com.kuafu_retrofit_exercise.model.Student;
-import zhangwenhao.kuafu.com.kuafu_retrofit_exercise.rxJava.No6Operator26Window;
+import zhangwenhao.kuafu.com.kuafu_retrofit_exercise.rxJava.No6Operator31Debounce;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -89,7 +89,11 @@ public class MainActivity extends AppCompatActivity {
 //        No6Operator26Window.window2();
 //        No6Operator26Window.window3();
 //        No6Operator26Window.window4();
-        No6Operator26Window.window5();
+//        No6Operator26Window.window5();
+//        No6Operator31Debounce.debounce();
+//        No6Operator31Debounce.throttleWithTimeout();
+        No6Operator31Debounce.debounce1();
+
     }
 
 
