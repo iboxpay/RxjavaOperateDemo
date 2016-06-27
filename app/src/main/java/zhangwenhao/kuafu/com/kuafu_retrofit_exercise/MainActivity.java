@@ -23,7 +23,7 @@ import rx.schedulers.Schedulers;
 import zhangwenhao.kuafu.com.kuafu_retrofit_exercise.factory.DataFactory;
 import zhangwenhao.kuafu.com.kuafu_retrofit_exercise.model.Course;
 import zhangwenhao.kuafu.com.kuafu_retrofit_exercise.model.Student;
-import zhangwenhao.kuafu.com.kuafu_retrofit_exercise.rxJava.No6Operator37Sample;
+import zhangwenhao.kuafu.com.kuafu_retrofit_exercise.rxJava.No6Operator39SkipLast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -101,7 +101,10 @@ public class MainActivity extends AppCompatActivity {
 //        No6Operator35First.first();
 //        No6Operator35First.firstOrDefault();
 //        No6Operator37Sample.sample();
-        No6Operator37Sample.throtteFirst();
+//        No6Operator38Sample.throtteFirst();
+//        No6Operator39Skip.skip();
+//        No6Operator39Skip.skip1();
+        No6Operator39SkipLast.skipLast();
 
     }
 

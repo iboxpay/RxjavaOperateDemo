@@ -13,7 +13,7 @@ import rx.functions.Action1;
  * email:zhangwenhao@iboxpay.com
  * QQ:1160113614
  */
-public class No6Operator37Sample {
+public class No6Operator38Sample {
 
     private static final String TAG = "No6Operator37Sample";
 
