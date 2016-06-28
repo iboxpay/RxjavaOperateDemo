@@ -23,7 +23,7 @@ import rx.schedulers.Schedulers;
 import zhangwenhao.kuafu.com.kuafu_retrofit_exercise.factory.DataFactory;
 import zhangwenhao.kuafu.com.kuafu_retrofit_exercise.model.Course;
 import zhangwenhao.kuafu.com.kuafu_retrofit_exercise.model.Student;
-import zhangwenhao.kuafu.com.kuafu_retrofit_exercise.rxJava.No6Operator61Delay;
+import zhangwenhao.kuafu.com.kuafu_retrofit_exercise.rxJava.No6Operator61Do;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -121,7 +121,12 @@ public class MainActivity extends AppCompatActivity {
 //        No6Operator51Catch.rxCatch();
 //        No6Operator51Retry.retry();
 //        No6Operator61Delay.delay();
-        No6Operator61Delay.delay1();
+//        No6Operator61Delay.delay1();
+//        No6Operator61Do.doOnEach();
+//        No6Operator61Do.doOnNext();
+//        No6Operator61Do.doOnSubscribe();
+//        No6Operator61Do.doOnCompleted();
+        No6Operator61Do.doOnUnsubscrobe();
 
     }
 
