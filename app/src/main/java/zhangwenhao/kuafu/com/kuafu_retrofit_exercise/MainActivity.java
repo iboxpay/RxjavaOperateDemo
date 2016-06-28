@@ -23,7 +23,7 @@ import rx.schedulers.Schedulers;
 import zhangwenhao.kuafu.com.kuafu_retrofit_exercise.factory.DataFactory;
 import zhangwenhao.kuafu.com.kuafu_retrofit_exercise.model.Course;
 import zhangwenhao.kuafu.com.kuafu_retrofit_exercise.model.Student;
-import zhangwenhao.kuafu.com.kuafu_retrofit_exercise.rxJava.No6Operator39TakeLast;
+import zhangwenhao.kuafu.com.kuafu_retrofit_exercise.rxJava.No6Operator41AndThenWhen;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -108,7 +108,9 @@ public class MainActivity extends AppCompatActivity {
 //        No6Operator39Take.take();
 //        No6Operator39Take.take1();
 //        No6Operator39TakeLast.takeLast();
-        No6Operator39TakeLast.takeLastBuffer();
+//        No6Operator39TakeLast.takeLastBuffer();
+//        No6Operator41AndThenWhen.and();
+        No6Operator41AndThenWhen.and1();
 
     }
 
